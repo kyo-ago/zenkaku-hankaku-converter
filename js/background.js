@@ -11,6 +11,11 @@
 		'title' : '半角へ変換する',
 		'contexts' : ['editable']
 	});
+	chrome.contextMenus.create({
+		'id' : 'katakana',
+		'title' : 'カナへ変換する',
+		'contexts' : ['editable']
+	});
 	var executeScript = {
 		'zenkaku' : function () {
 			var active = document.activeElement;
@@ -44,6 +49,21 @@
 				return ({
 					'　' : ' '
 				})[s] || String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+			});
+		},
+		'katakana' : function () {
+			var active = document.activeElement;
+			if (!active) {
+				return;
+			}
+			if (active.tabName !== 'textarea' && active.type !== 'text') {
+				return;
+			}
+			if (!active.value) {
+				return;
+			}
+			active.value = active.value.replace(/[ぁ-ん]/g, function(s) {
+				return String.fromCharCode(s.charCodeAt(0) + 0x60);
 			});
 		}
 	};

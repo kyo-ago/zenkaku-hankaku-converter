@@ -2,7 +2,7 @@
 	"name": "全角半角変換",
 	"description": "formのcontext menuに「全角へ変換する」、「半角へ変換する」を追加します",
 	"manifest_version": 2,
-	"version": "0.1",
+	"version": "0.2",
 	"background" : {
 		"scripts" : ["/js/background.js"],
 		"persistent" : false
